@@ -1,52 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ASA-TECH Technologie LLC</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-    header { background-color: #0a0a23; color: white; padding: 2rem; text-align: center; }
-    section { padding: 2rem; max-width: 800px; margin: auto; background: white; margin-top: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-    h1, h2 { color: #0a0a23; }
-    footer { background-color: #eaeaea; text-align: center; padding: 1rem; margin-top: 2rem; font-size: 0.9rem; }
-    ul { padding-left: 1.2rem; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASA-TECH Technologie</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <h1>ASA-TECH Technologie LLC</h1>
-    <p>Experts in Software Architecture, Development & IT Training</p>
-  </header>
+<body class="bg-white text-gray-800">
 
-  <section>
-    <h2>About Us</h2>
-    <p>
-      ASA-TECH Technologie LLC is a company specialized in IT services with a strong focus on 
-      software architecture, custom development, and Java expertise. 
-      We support our clients in their technical projects and offer professional training programs, 
-      especially in cybersecurity, software development, and IT best practices.
-    </p>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-20 px-4 text-center">
+    <div class="max-w-4xl mx-auto">
+      <img src="asa-tech-logo.jpg" alt="ASA-TECH Logo" class="mx-auto mb-6 w-32">
+      <h1 class="text-4xl font-bold mb-4">ASA-TECH TECHNOLOGIE</h1>
+      <p class="text-xl mb-6">
+        Conseil, Développement, Formation, IA et Sécurité — Votre partenaire digital de confiance.
+      </p>
+      <a href="#contact" class="bg-white text-blue-700 hover:bg-blue-200 px-6 py-3 rounded font-semibold">Demander un devis</a>
+    </div>
   </section>
 
-  <section>
-    <h2>Our Services</h2>
-    <ul>
-      <li>Software Architecture and Cloud Solutions</li>
-      <li>Custom Application Development</li>
-      <li>Advanced Java and Backend Technology Consulting</li>
-      <li>Professional IT Training (Cybersecurity, Development, DevOps tools...)</li>
-    </ul>
+  <!-- Services -->
+  <section class="py-16 px-6 bg-gray-50">
+    <h2 class="text-3xl font-bold text-center mb-10">Nos Services</h2>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div class="shadow-lg p-6 bg-white rounded">
+        <h3 class="font-semibold text-xl mb-2">Conseil & Architecture Logicielle</h3>
+        <p>Audit de vos systèmes actuels, conception d'architectures modernes (microservices, hexagonale, cloud-native) pour booster la performance et la scalabilité de vos solutions logicielles.</p>
+      </div>
+      <div class="shadow-lg p-6 bg-white rounded">
+        <h3 class="font-semibold text-xl mb-2">Développement Web & Mobile</h3>
+        <p>Applications sur mesure, performantes et intuitives, réalisées avec les dernières technologies : Java, Quarkus, Angular, React, Flutter, etc.</p>
+      </div>
+      <div class="shadow-lg p-6 bg-white rounded">
+        <h3 class="font-semibold text-xl mb-2">Cybersécurité & Audit</h3>
+        <p>Tests de vulnérabilité, audits de sécurité, accompagnement pour la mise en conformité (RGPD, PCI-DSS) et durcissement des systèmes.</p>
+      </div>
+      <div class="shadow-lg p-6 bg-white rounded">
+        <h3 class="font-semibold text-xl mb-2">Formations sur mesure</h3>
+        <p>Sessions adaptées à vos équipes : architecture logicielle, DevSecOps, IA, cloud computing, cybersécurité, pratiques de clean code.</p>
+      </div>
+      <div class="shadow-lg p-6 bg-white rounded">
+        <h3 class="font-semibold text-xl mb-2">Intelligence Artificielle & Données</h3>
+        <p>Développement de modèles IA pour automatisation, classification, recommandation ; mise en place de pipelines de données et visualisation (PowerBI, Grafana...)</p>
+      </div>
+      <div class="shadow-lg p-6 bg-white rounded">
+        <h3 class="font-semibold text-xl mb-2">Migration vers des architectures modernes</h3>
+        <p>Modernisation de vos systèmes legacy : passage au cloud, découpage en microservices, conteneurisation, orchestration Kubernetes/OKD.</p>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:achraf.alaoui@asa-tech.net">achraf.alaoui@asa-tech.net</a></p>
-    <p>Phone: +212 6 61 47 40 90 </p>
+  <!-- Contact -->
+  <section id="contact" class="py-16 px-6 bg-white">
+    <h2 class="text-3xl font-bold text-center mb-10">Contactez-nous</h2>
+    <div class="max-w-2xl mx-auto space-y-6">
+      <input type="text" placeholder="Votre nom" class="w-full border border-gray-300 p-3 rounded" />
+      <input type="email" placeholder="Votre email" class="w-full border border-gray-300 p-3 rounded" />
+      <textarea placeholder="Votre message..." class="w-full border border-gray-300 p-3 rounded h-32"></textarea>
+      <button class="w-full bg-blue-600 text-white py-3 rounded hover:bg-blue-700">Envoyer</button>
+    </div>
+    <div class="flex justify-center gap-6 mt-10 text-gray-600">
+      <div class="flex items-center gap-2">📧 contact@asa-tech.com</div>
+      <div class="flex items-center gap-2">📞 +212 6 00 00 00 00</div>
+    </div>
   </section>
 
-  <footer>
-    &copy; 2025 ASA-TECH Technologie LLC — All rights reserved
+  <!-- Footer -->
+  <footer class="bg-gray-100 py-6 text-center text-sm text-gray-500">
+    © 2025 ASA-TECH Technologie. Tous droits réservés.
   </footer>
+
 </body>
 </html>
