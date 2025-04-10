@@ -1,262 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASA-TECH | Software Architecture & Innovation</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --blue-dark: #003366;
-      --blue-light: #005999;
       --blue-accent: #007acc;
-      --grey-border: #e0e0e0;
-      --card-bg: #f9fbfd;
-      --card-border: #d0e6f8;
+      --background: #f9fbfd;
+      --text-color: #1c1c1c;
+      --white: #ffffff;
+      --radius: 12px;
     }
+
     * {
       box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: 'Inter', sans-serif;
-      background: white;
-      color: var(--blue-dark);
+      background-color: var(--background);
+      color: var(--text-color);
+      line-height: 1.6;
     }
+
     header {
-      background: white;
-      border-bottom: 1px solid var(--grey-border);
+      position: sticky;
+      top: 0;
+      background-color: var(--white);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
     }
-    .header-container {
+
+    .logo {
+      height: 48px;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--blue-dark);
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--blue-accent);
+    }
+
+    main {
+      padding: 4rem 2rem;
       max-width: 1200px;
       margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 1.5rem 2rem;
     }
-    .branding {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .logo {
-      max-width: 120px;
-    }
-    .header-text {
-      display: flex;
-      flex-direction: column;
-    }
-    .header-text p {
-      margin: 0;
-      font-style: italic;
-      font-size: 1rem;
-    }
-    .tagline {
-      font-size: 0.9rem;
-      color: var(--blue-light);
-    }
-    nav {
-      display: flex;
-      gap: 2rem;
-      font-size: 0.95rem;
-    }
-    nav a {
-      color: var(--blue-dark);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    section {
-      padding: 4rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
+
     h2 {
-      text-align: center;
-      margin-bottom: 2rem;
       font-size: 2rem;
-      color: #002244;
+      color: var(--blue-dark);
+      margin-bottom: 2rem;
+      text-align: center;
     }
-    .highlight {
-      background: #e8f4ff;
-      border-left: 4px solid var(--blue-accent);
-      padding: 1.5rem;
-      margin: 2rem 0;
-      border-radius: 8px;
-      font-size: 1.1rem;
-    }
-    .services {
+
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
+
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      padding: 2rem;
-      border-radius: 12px;
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius);
       box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease;
       cursor: pointer;
-      position: relative;
     }
+
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
     }
+
     .card h3 {
-      margin-top: 0;
-      color: var(--blue-dark);
+      margin-bottom: 0.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: var(--blue-dark);
+      font-size: 1.25rem;
     }
-    .toggle-icon {
-      font-size: 1.2rem;
-      color: var(--blue-accent);
+
+    .card h3 .arrow {
       transition: transform 0.3s ease;
     }
-    .card.open .toggle-icon {
-      transform: rotate(45deg);
+
+    .card.open h3 .arrow {
+      transform: rotate(90deg);
     }
+
     .card-details {
-      display: none;
-      margin-top: 1rem;
-      color: #333;
+      max-height: 0;
+      overflow: hidden;
       font-size: 0.95rem;
-      animation: fadeIn 0.5s ease-in-out;
+      transition: max-height 0.5s ease, margin 0.3s ease;
     }
+
     .card.open .card-details {
-      display: block;
+      margin-top: 1rem;
+      max-height: 500px;
     }
-    #contact {
-      text-align: center;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      animation: fadeIn 1s ease-in-out;
-    }
+
     footer {
-      background: var(--blue-dark);
+      background-color: var(--blue-dark);
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.95rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav {
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 1rem;
-      }
-      .header-text {
-        align-items: center;
-        text-align: center;
-      }
+      padding: 2rem;
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-container">
-      <div class="branding">
-        <img src="asa-tech-logo.png" alt="ASA-TECH Logo" class="logo" />
-        <div class="header-text">
-          <p>Architecting the Future of Software</p>
-          <div class="tagline">Advanced Solutions & Architecture – Technology</div>
-        </div>
-      </div>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+    <img src="asa-tech-logo.png" alt="ASA-TECH Logo" class="logo">
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <section id="about">
-    <h2>Who We Are</h2>
-    <p>ASA-TECH is a software engineering and consultancy company dedicated to delivering high-quality solutions and guiding businesses toward modern, secure, and intelligent architectures. We bring innovation to every layer of your system.</p>
-    <div class="highlight">
-      Our deep expertise in the <strong>banking and financial sector</strong> allows us to support banks in transforming their digital channels, securing critical infrastructures, and delivering resilient, customer-centric platforms.
-    </div>
-    <p>We believe in collaborative design, agility, and high standards to create impactful and sustainable digital solutions.</p>
-  </section>
+  <main>
+    <section id="intro">
+      <h2>We build future-ready platforms</h2>
+      <p style="text-align: center; max-width: 800px; margin: auto; font-size: 1.1rem; margin-bottom: 3rem;">
+        ASA-TECH empowers businesses to innovate, scale, and secure their digital landscape through cutting-edge software solutions and expert guidance.
+        <br><br>
+        Our mission is to bridge business needs with technological excellence by delivering high-impact services in architecture, development, cybersecurity, AI, and coaching. 
+        We partner with forward-thinking organizations—especially in the banking and finance sector—to build systems that are not only robust and scalable but also secure and intelligent.
+        <br><br>
+        With a strong commitment to quality and innovation, ASA-TECH supports its clients from ideation to execution, helping them navigate complexity and drive digital transformation with confidence.
+      </p>
+    </section>
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Architecture <span class="arrow">▶</span></h3>
+          <p>Designing reliable, scalable, and modular systems is our core specialty.</p>
+          <div class="card-details">
+            <p>We define architectural standards, produce transformation roadmaps, and guide the implementation of cloud-native platforms aligned with your business vision.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Custom Development <span class="arrow">▶</span></h3>
+          <p>Tailored applications from frontend to backend, fast and high-quality.</p>
+          <div class="card-details">
+            <p>Our stack includes Quarkus, Spring Boot, React, Angular, and scalable cloud-native deployments powered by DevOps practices.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Cybersecurity <span class="arrow">▶</span></h3>
+          <p>We embed security in every layer of your system.</p>
+          <div class="card-details">
+            <p>From secure coding and IAM to PKI, mTLS, and regulatory compliance, we build robust digital environments where risk is mitigated by design.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI & Analytics <span class="arrow">▶</span></h3>
+          <p>Unleashing business insights through artificial intelligence.</p>
+          <div class="card-details">
+            <p>We build fraud detection models, customer insight engines, and conversational AI solutions with ethical and explainable principles.</p>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Training & Coaching <span class="arrow">▶</span></h3>
+          <p>Empowering teams through immersive and contextual learning.</p>
+          <div class="card-details">
+            <p>We deliver learning experiences in architecture, agile, DevSecOps, and clean code practices through mentoring and practical projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-      <div class="card">
-        <h3>Software Architecture <span class="toggle-icon">+</span></h3>
-        <p>Designing scalable and maintainable systems tailored to your needs.</p>
-        <div class="card-details">
-          <p>We define clear architectural patterns, manage technical debt, and guide teams with documentation and standards. Our experts ensure your system remains extensible, testable, and future-proof.</p>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Custom Development <span class="toggle-icon">+</span></h3>
-        <p>Building reliable software using modern technologies and best practices.</p>
-        <div class="card-details">
-          <p>We deliver tailored applications for both web and mobile, focusing on performance, usability, and security. Whether it's microservices, APIs, or UI/UX, our developers bring your vision to life.</p>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Cybersecurity <span class="toggle-icon">+</span></h3>
-        <p>Securing your digital assets with up-to-date strategies and audits.</p>
-        <div class="card-details">
-          <p>We perform vulnerability assessments, penetration testing, and implement secure architectures to help you comply with international standards such as ISO 27001 and PCI-DSS.</p>
-        </div>
-      </div>
-      <div class="card">
-        <h3>AI & Machine Learning <span class="toggle-icon">+</span></h3>
-        <p>Transforming data into insights and automation through intelligent systems.</p>
-        <div class="card-details">
-          <p>From predictive analytics to NLP and recommendation engines, we integrate AI to optimize your processes and deliver value from your data assets.</p>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Training & Coaching <span class="toggle-icon">+</span></h3>
-        <p>Helping teams grow through hands-on workshops and personalized guidance.</p>
-        <div class="card-details">
-          <p>We empower your teams through coaching in software craftsmanship, DevOps practices, agile methodologies, and new technology stacks adapted to your context.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p><strong>Email:</strong> <a href="mailto:contact@asa-tech.net" style="color: var(--blue-accent); text-decoration: none;">contact@asa-tech.io</a></p>
-    <p><strong>Phone:</strong> <a href="tel:+212661474090" style="color: var(--blue-accent); text-decoration: none;">+212 6 00 00 00 00</a></p>
-    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/company/asa-tech" target="_blank" style="color: var(--blue-accent); text-decoration: none;">Follow us on LinkedIn</a></p>
-  </section>
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <p>Email: <a href="mailto:contact@asa-tech.net">contact@asa-tech.net</a></p>
+      <p>Phone: <a href="tel:+212661474090">+212 661 47 40 90</a></p>
+      <p>WhatsApp: <a href="https://wa.me/212661474090" target="_blank">Chat with us</a></p>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 ASA-TECH Technologie — All rights reserved.</p>
   </footer>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      document.querySelectorAll(".card").forEach(function (card) {
-        card.addEventListener("click", function () {
-          card.classList.toggle("open");
-          const icon = card.querySelector(".toggle-icon");
-          if (icon) icon.textContent = card.classList.contains("open") ? "−" : "+";
-          if (card.classList.contains("open")) {
-            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('open');
+        const arrow = card.querySelector('.arrow');
+        if (arrow) {
+          arrow.textContent = card.classList.contains('open') ? '▼' : '▶';
+        }
       });
     });
   </script>
